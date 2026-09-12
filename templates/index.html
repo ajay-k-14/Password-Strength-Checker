@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Strength Analyzer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">&#128272;</span>
+        <h1>Password Strength Analyzer</h1>
+      </div>
+      <p class="tagline">Check how strong your password really is..</p>
+    </header>
+
+    <main class="grid">
+      <!-- ANALYZER CARD -->
+      <section class="card" aria-labelledby="analyzer-heading">
+        <h2 id="analyzer-heading">Enter Password</h2>
+
+        <div class="input-row">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Type a password to analyze..."
+            autocomplete="new-password"
+            maxlength="256"
+          >
+          <button type="button" id="toggle-visibility" class="btn-icon" aria-label="Show password">
+            &#128065;
+          </button>
+        </div>
+
+        <div class="meter-block">
+          <div class="meter-labels">
+            <span>Strength</span>
+            <span id="strength-label">—</span>
+          </div>
+          <div class="meter-track">
+            <div id="meter-fill" class="meter-fill"></div>
+          </div>
+          <div class="score-row">
+            <span>Score</span>
+            <span id="score-value">0 / 100</span>
+          </div>
+          <div class="score-row entropy-row">
+            <span>Estimated entropy</span>
+            <span id="entropy-value">0 bits</span>
+          </div>
+        </div>
+
+        <div class="checks-block">
+          <h3>Security Checks</h3>
+          <ul id="checks-list" class="checks-list"></ul>
+        </div>
+
+        <div class="feedback-block">
+          <div class="warnings-block" id="warnings-block" hidden>
+            <h3>Warnings</h3>
+            <ul id="warnings-list" class="warnings-list"></ul>
+          </div>
+          <div class="recommendations-block" id="recommendations-block" hidden>
+            <h3>Recommendations</h3>
+            <ul id="recommendations-list" class="recommendations-list"></ul>
+          </div>
+        </div>
+
+        <p class="privacy-notice">
+          &#128274; Your password is analyzed locally in your browser and is never stored or transmitted.
+        </p>
+      </section>
+
+      <!-- GENERATOR CARD -->
+      <section class="card" aria-labelledby="generator-heading">
+        <h2 id="generator-heading">Secure Password Generator</h2>
+
+        <div class="field-row">
+          <label for="gen-length">Length: <span id="gen-length-value">16</span></label>
+          <input type="range" id="gen-length" min="8" max="64" value="16">
+        </div>
+
+        <div class="options-grid">
+          <label class="checkbox-row">
+            <input type="checkbox" id="gen-uppercase" checked>
+            Uppercase (A-Z)
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="gen-lowercase" checked>
+            Lowercase (a-z)
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="gen-numbers" checked>
+            Numbers (0-9)
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="gen-special" checked>
+            Special characters
+          </label>
+        </div>
+
+        <button type="button" id="generate-btn" class="btn-primary">Generate Password</button>
+
+        <div class="generated-row">
+          <input type="text" id="generated-output" readonly placeholder="Generated password will appear here">
+          <button type="button" id="copy-btn" class="btn-secondary">Copy</button>
+        </div>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+
+        <p class="privacy-notice">
+          &#9888; Generated passwords are shown only in your browser and are never saved on the server.
+        </p>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Warning: For defensive password-security awareness. No passwords are ever logged or stored.</p>
+      
+      <p>Developed by <a href="
+
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
